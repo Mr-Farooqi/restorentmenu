@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Taste — Premium Cafe</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9a84c;--gold2:#e8c97e;--gold3:#f5e4a8;
+  --dark:#0a0800;--dark2:#111000;--card:#181400;
+  --border:#2e2400;--border2:#3d3200;
+  --text:#f0e6c8;--muted:#9a8050;--dim:#5a4820;
+}
+html,body{min-height:100%;background:var(--dark);font-family:'Outfit',sans-serif;margin:0;padding:0}
+
+.phone{width:100%;max-width:600px;margin:0 auto;background:var(--dark);position:relative;}
+
+.status{display:none}
+
+.scroll-body{padding-bottom:80px}
+
+.hero{background:var(--dark2);padding:2.5rem 1.5rem 1.8rem;text-align:center;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;opacity:0.05;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+
+.logo-ring{width:140px;height:140px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;background:rgba(10,8,0,0.8);position:relative;z-index:1}
+.logo-inner{text-align:center}
+.logo-icon{font-size:30px;margin-bottom:4px}
+.logo-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:var(--gold2);letter-spacing:1.5px;line-height:1.1}
+.logo-tag{font-size:8px;color:var(--muted);letter-spacing:2px;margin-top:4px;border:1px solid var(--border2);border-radius:20px;padding:2px 7px;display:inline-block}
+.logo-stars{color:var(--gold);font-size:10px;margin-top:6px;letter-spacing:4px}
+
+.welcome-text{position:relative;z-index:1}
+.welcome-sub{font-family:'Great Vibes',cursive;font-size:38px;color:var(--gold2);line-height:1}
+.welcome-main{font-family:'Playfair Display',serif;font-size:36px;font-weight:800;color:var(--text);letter-spacing:2px;line-height:1.1;margin-top:4px}
+.welcome-main span{color:var(--gold2)}
+.divrow{display:flex;align-items:center;gap:8px;margin:8px auto;max-width:200px}
+.divrow::before,.divrow::after{content:'';flex:1;height:1px;background:var(--border2)}
+.divrow span{color:var(--gold);font-size:10px}
+.welcome-mood{font-size:13px;color:var(--muted);letter-spacing:1px;font-weight:300}
+
+.action-row{display:flex;justify-content:center;gap:28px;padding:16px 1rem;background:var(--dark)}
+.action-btn{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;background:none;border:none}
+.action-icon{width:54px;height:54px;border-radius:16px;border:1.5px solid var(--border2);background:var(--card);display:flex;align-items:center;justify-content:center;font-size:22px}
+.action-btn:nth-child(1) .action-icon{border-color:#c9a84c66}
+.action-btn:nth-child(2) .action-icon{border-color:#25d36666}
+.action-btn:nth-child(3) .action-icon{border-color:#4a8cff66}
+.action-label{font-size:11px;color:var(--muted);letter-spacing:0.3px}
+
+.info-card{margin:0 1.5rem 14px;padding:14px 18px;background:var(--card);border:1px solid var(--border2);border-radius:14px}
+.info-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}
+.info-row+.info-row{margin-top:7px}
+.info-icon{font-size:16px;color:var(--gold)}
+
+.menu-header{text-align:center;padding:14px 1rem 10px}
+.menu-title{display:flex;align-items:center;justify-content:center;gap:8px}
+.menu-title::before,.menu-title::after{content:'';flex:1;height:1px;background:var(--border2)}
+.menu-title span{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--gold2);letter-spacing:2px}
+
+.search-wrap{padding:0 1.5rem 10px}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:0 12px}
+.search-box i{color:var(--muted);font-size:16px}
+.search-box input{flex:1;background:none;border:none;outline:none;color:var(--text);font-family:'Outfit',sans-serif;font-size:13px;padding:10px 0;font-weight:300}
+.search-box input::placeholder{color:var(--dim)}
+
+.filters{display:flex;gap:8px;padding:0 1.5rem 14px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter-btn{padding:7px 16px;border-radius:20px;font-size:12px;font-weight:500;font-family:'Outfit',sans-serif;cursor:pointer;white-space:nowrap;border:1.5px solid var(--border2);background:var(--card);color:var(--muted);transition:all 0.2s;flex-shrink:0}
+.filter-btn.on{background:var(--gold);color:#0a0800;border-color:var(--gold);font-weight:600}
+
+.food-cards{padding:0 1.5rem}
+.food-card{display:flex;gap:0;background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.food-card.hidden{display:none}
+.food-img{width:120px;min-height:108px;object-fit:cover;flex-shrink:0;font-size:42px;display:flex;align-items:center;justify-content:center;background:#181200}
+.food-info{flex:1;padding:12px 12px 12px 14px;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid var(--border)}
+.food-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.food-divider{width:36px;height:1px;background:var(--gold);opacity:0.4;margin-bottom:5px}
+.food-desc{font-size:11px;color:var(--muted);font-weight:300;line-height:1.55;flex:1;margin-bottom:8px}
+.food-bottom{display:flex;align-items:center;justify-content:space-between}
+.food-price{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold)}
+.food-badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500}
+.badge-pop{background:#1f1800;color:var(--gold);border:1px solid #3a2e00}
+.badge-new{background:#0a1a0a;color:#6abf6a;border:1px solid #1a3a1a}
+.badge-chef{background:#1a0a1a;color:#c07ad4;border:1px solid #3a1a3a}
+.add-btn{width:30px;height:30px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:#0a0800;font-weight:700;line-height:1;transition:all 0.2s}
+.add-btn:hover{background:var(--gold2);transform:scale(1.1)}
+
+#noRes{display:none;text-align:center;padding:2.5rem 1rem;color:var(--muted)}
+#noRes i{font-size:36px;display:block;margin-bottom:8px;color:var(--dim)}
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--dark2);border-top:1px solid var(--border2);display:flex;height:60px;z-index:100;max-width:100%}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;background:none;color:var(--dim);font-family:'Outfit',sans-serif;font-size:10px;font-weight:400;transition:color 0.2s}
+.nav-item.on{color:var(--gold)}
+.nav-item i{font-size:22px}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);margin-top:1px;opacity:0}
+.nav-item.on .nav-dot{opacity:1}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="scroll-body" id="scrollBody">
+    <div class="hero">
+      <div class="hero-pattern"></div>
+      <div class="logo-ring">
+        <div class="logo-inner">
+          <div class="logo-icon">🍽</div>
+          <div class="logo-name">MR.<br>TASTE</div>
+          <div class="logo-tag">GOOD FOOD | GOOD MOOD</div>
+          <div class="logo-stars">★ ★ ★</div>
+        </div>
+      </div>
+      <div class="welcome-text">
+        <div class="welcome-sub">Welcome to</div>
+        <div class="welcome-main">MR. <span>TASTE</span></div>
+        <div class="divrow"><span>❖</span></div>
+        <div class="welcome-mood">Good Food | Good Mood</div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn" onclick="callUs()">
+        <div class="action-icon"><i class="ti ti-phone" style="color:#c9a84c;font-size:22px"></i></div>
+        <span class="action-label">Call Us</span>
+      </button>
+      <button class="action-btn" onclick="openWA()">
+        <div class="action-icon">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.668 4.61 1.832 6.5L4 29l7.697-1.81A11.94 11.94 0 0016 27c6.627 0 12-5.373 12-12S22.627 3 16 3z" fill="#25d366"/><path d="M21.5 18.5c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51-.17-.01-.37-.01-.57-.01s-.52.07-.79.37c-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z" fill="#fff"/></svg>
+        </div>
+        <span class="action-label">WhatsApp</span>
+      </button>
+      <button class="action-btn" onclick="openMaps()">
+        <div class="action-icon"><i class="ti ti-map-pin" style="color:#4a8cff;font-size:22px"></i></div>
+        <span class="action-label">Directions</span>
+      </button>
+    </div>
+
+    <div class="info-card">
+      <div class="info-row"><i class="ti ti-map-pin info-icon"></i><span>Near Railway Station, Lucknow, UP</span></div>
+      <div class="info-row" style="margin-top:7px"><i class="ti ti-phone info-icon"></i><span>+91 98765 00000</span></div>
+    </div>
+
+    <div class="menu-header">
+      <div class="menu-title"><span>✦ OUR MENU ✦</span></div>
+    </div>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <i class="ti ti-search"></i>
+        <input type="text" placeholder="Search dishes..." id="srch" oninput="doSearch(this.value)" autocomplete="off">
+        <i class="ti ti-x" id="clrBtn" style="color:var(--dim);font-size:15px;cursor:pointer;display:none" onclick="clearSrch()"></i>
+      </div>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn on" onclick="filter('all',this)">All Items</button>
+      <button class="filter-btn" onclick="filter('snacks',this)">Snacks</button>
+      <button class="filter-btn" onclick="filter('mains',this)">Main Course</button>
+      <button class="filter-btn" onclick="filter('sandwiches',this)">Sandwiches</button>
+      <button class="filter-btn" onclick="filter('drinks',this)">Drinks</button>
+      <button class="filter-btn" onclick="filter('desserts',this)">Desserts</button>
+    </div>
+
+    <div class="food-cards" id="foodCards">
+      <div class="food-card" data-cat="snacks" data-name="veg puff pastry spiced potato peas"><div class="food-img">🥐</div><div class="food-info"><div><div class="food-name">Veg Puff</div><div class="food-divider"></div><div class="food-desc">Flaky pastry filled with spiced potato & peas</div></div><div class="food-bottom"><div class="food-price">₹35</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="snacks" data-name="samosa crispy fried mint chutney"><div class="food-img">🥟</div><div class="food-info"><div><div class="food-name">Samosa (2 pcs)</div><div class="food-divider"></div><div class="food-desc">Crispy fried samosa with mint chutney</div></div><div class="food-bottom"><div class="food-price">₹40</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="snacks" data-name="veg momos dumplings steamed fried chilli sauce"><div class="food-img">🫕</div><div class="food-info"><div><div class="food-name">Veg Momos (6 pcs)</div><div class="food-divider"></div><div class="food-desc">Steamed / fried dumplings with red chilli sauce</div></div><div class="food-bottom"><div class="food-price">₹80</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="snacks" data-name="french fries crispy golden ketchup mayo"><div class="food-img">🍟</div><div class="food-info"><div><div class="food-name">French Fries</div><div class="food-divider"></div><div class="food-desc">Crispy golden fries with ketchup & mayo</div></div><div class="food-bottom"><div class="food-price">₹70</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="snacks" data-name="loaded nachos corn chips salsa cheese jalapenos"><div class="food-img">🌮</div><div class="food-info"><div><div class="food-name">Loaded Nachos</div><div class="food-divider"></div><div class="food-desc">Corn chips with salsa, cheese sauce & jalapeños</div></div><div class="food-bottom"><div class="food-price">₹120</div><span class="food-badge badge-new">✦ New</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="snacks" data-name="paneer tikka skewers grilled bell pepper onion"><div class="food-img">🍢</div><div class="food-info"><div><div class="food-name">Paneer Tikka</div><div class="food-divider"></div><div class="food-desc">Smoky grilled paneer with bell pepper & onion</div></div><div class="food-bottom"><div class="food-price">₹180</div><span class="food-badge badge-chef">✧ Chef's Pick</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="mains" data-name="veg fried rice indo chinese wok tossed"><div class="food-img">🍚</div><div class="food-info"><div><div class="food-name">Veg Fried Rice</div><div class="food-divider"></div><div class="food-desc">Indo-Chinese style wok-tossed rice</div></div><div class="food-bottom"><div class="food-price">₹110</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="mains" data-name="veg hakka noodles stir fried vegetables sauces"><div class="food-img">🍜</div><div class="food-info"><div><div class="food-name">Veg Hakka Noodles</div><div class="food-divider"></div><div class="food-desc">Stir-fried noodles with fresh vegetables & sauces</div></div><div class="food-bottom"><div class="food-price">₹110</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="mains" data-name="veg biryani aromatic basmati saffron spices"><div class="food-img">🍛</div><div class="food-info"><div><div class="food-name">Veg Biryani</div><div class="food-divider"></div><div class="food-desc">Aromatic basmati rice with saffron & whole spices</div></div><div class="food-bottom"><div class="food-price">₹150</div><span class="food-badge badge-chef">✧ Chef's Pick</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="mains" data-name="aloo tikki burger potato patty lettuce tomato mustard"><div class="food-img">🍔</div><div class="food-info"><div><div class="food-name">Aloo Tikki Burger</div><div class="food-divider"></div><div class="food-desc">Spiced potato patty, lettuce, tomato, mustard sauce</div></div><div class="food-bottom"><div class="food-price">₹90</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="mains" data-name="paneer tikka wrap grilled mint chutney"><div class="food-img">🌯</div><div class="food-info"><div><div class="food-name">Paneer Tikka Wrap</div><div class="food-divider"></div><div class="food-desc">Grilled paneer, onion, peppers in mint chutney wrap</div></div><div class="food-bottom"><div class="food-price">₹120</div><span class="food-badge badge-new">✦ New</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="mains" data-name="veg double patty burger crispy special sauce"><div class="food-img">🍔</div><div class="food-info"><div><div class="food-name">Veg Double Patty Burger</div><div class="food-divider"></div><div class="food-desc">Two crispy patties, special Mr. Taste sauce</div></div><div class="food-bottom"><div class="food-price">₹130</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="sandwiches" data-name="grilled veg sandwich cucumber tomato cheese chutney"><div class="food-img">🥪</div><div class="food-info"><div><div class="food-name">Grilled Veg Sandwich</div><div class="food-divider"></div><div class="food-desc">Cucumber, tomato, cheese, green chutney on multigrain</div></div><div class="food-bottom"><div class="food-price">₹80</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="sandwiches" data-name="paneer grilled sandwich bell pepper cheese spread"><div class="food-img">🥪</div><div class="food-info"><div><div class="food-name">Paneer Grilled Sandwich</div><div class="food-divider"></div><div class="food-desc">Spiced paneer, bell peppers, cheese spread</div></div><div class="food-bottom"><div class="food-price">₹100</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="sandwiches" data-name="club sandwich triple decker egg cheese lettuce"><div class="food-img">🥪</div><div class="food-info"><div><div class="food-name">Club Sandwich</div><div class="food-divider"></div><div class="food-desc">Triple decker with egg, cheese, lettuce, tomato</div></div><div class="food-bottom"><div class="food-price">₹130</div><span class="food-badge badge-new">✦ New</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="drinks" data-name="masala chai spiced tea ginger cardamom"><div class="food-img">🍵</div><div class="food-info"><div><div class="food-name">Masala Chai</div><div class="food-divider"></div><div class="food-desc">House blend spiced tea with ginger & cardamom</div></div><div class="food-bottom"><div class="food-price">₹30</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="drinks" data-name="cafe latte espresso steamed milk froth coffee"><div class="food-img">☕</div><div class="food-info"><div><div class="food-name">Cafe Latte</div><div class="food-divider"></div><div class="food-desc">Espresso with steamed milk & light froth</div></div><div class="food-bottom"><div class="food-price">₹90</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="drinks" data-name="cold coffee blended iced cream chocolate drizzle"><div class="food-img">🧋</div><div class="food-info"><div><div class="food-name">Cold Coffee</div><div class="food-divider"></div><div class="food-desc">Blended iced coffee with cream & chocolate drizzle</div></div><div class="food-bottom"><div class="food-price">₹90</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="drinks" data-name="mango lassi fresh yogurt chilled blended"><div class="food-img">🥭</div><div class="food-info"><div><div class="food-name">Mango Lassi</div><div class="food-divider"></div><div class="food-desc">Fresh mango blended with chilled yogurt</div></div><div class="food-bottom"><div class="food-price">₹80</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="drinks" data-name="fresh lime soda lemonade mint sweet salted"><div class="food-img">🍋</div><div class="food-info"><div><div class="food-name">Fresh Lime Soda</div><div class="food-divider"></div><div class="food-desc">Sweet / salted lemonade with fresh mint</div></div><div class="food-bottom"><div class="food-price">₹50</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="desserts" data-name="brownie ice cream warm chocolate vanilla scoop"><div class="food-img">🍫</div><div class="food-info"><div><div class="food-name">Brownie + Ice Cream</div><div class="food-divider"></div><div class="food-desc">Warm chocolate brownie with vanilla scoop</div></div><div class="food-bottom"><div class="food-price">₹130</div><span class="food-badge badge-pop">⭐ Popular</span><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="desserts" data-name="gulab jamun milk dumplings rose sugar syrup"><div class="food-img">🍮</div><div class="food-info"><div><div class="food-name">Gulab Jamun (2 pcs)</div><div class="food-divider"></div><div class="food-desc">Soft milk dumplings soaked in rose sugar syrup</div></div><div class="food-bottom"><div class="food-price">₹60</div><button class="add-btn">+</button></div></div></div>
+      <div class="food-card" data-cat="desserts" data-name="waffle nutella crispy belgian banana drizzle"><div class="food-img">🧇</div><div class="food-info"><div><div class="food-name">Waffle with Nutella</div><div class="food-divider"></div><div class="food-desc">Crispy Belgian waffle drizzled with Nutella & banana</div></div><div class="food-bottom"><div class="food-price">₹140</div><span class="food-badge badge-chef">✧ Chef's Pick</span><button class="add-btn">+</button></div></div></div>
+      <div id="noRes"><i class="ti ti-mood-sad"></i><span style="font-size:14px">Koi item nahi mila!</span></div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item on" onclick="navClick(this,'home')"><i class="ti ti-home-2"></i><span>Home</span><div class="nav-dot"></div></button>
+    <button class="nav-item" onclick="navClick(this,'menu')"><i class="ti ti-menu-2"></i><span>Menu</span><div class="nav-dot"></div></button>
+    <button class="nav-item" onclick="navClick(this,'about')"><i class="ti ti-info-circle"></i><span>About Us</span><div class="nav-dot"></div></button>
+    <button class="nav-item" onclick="navClick(this,'contact')"><i class="ti ti-phone-call"></i><span>Contact</span><div class="nav-dot"></div></button>
+  </nav>
+</div>
+
+<script>
+var curFilter='all';
+function filter(cat,btn){
+  curFilter=cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.food-card').forEach(c=>{
+    c.classList.toggle('hidden',cat!=='all'&&c.getAttribute('data-cat')!==cat);
+  });
+  document.getElementById('noRes').style.display='none';
+}
+function doSearch(q){
+  q=q.trim().toLowerCase();
+  document.getElementById('clrBtn').style.display=q?'block':'none';
+  if(!q){clearSrch();return;}
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  var found=0;
+  document.querySelectorAll('.food-card').forEach(c=>{
+    var nm=c.getAttribute('data-name')||'';
+    var t=c.querySelector('.food-name')?c.querySelector('.food-name').textContent.toLowerCase():'';
+    var show=nm.includes(q)||t.includes(q);
+    c.classList.toggle('hidden',!show);
+    if(show)found++;
+  });
+  document.getElementById('noRes').style.display=found?'none':'block';
+}
+function clearSrch(){
+  document.getElementById('srch').value='';
+  document.getElementById('clrBtn').style.display='none';
+  document.getElementById('noRes').style.display='none';
+  document.querySelectorAll('.food-card').forEach(c=>c.classList.remove('hidden'));
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('on',b.textContent.trim()==='All Items'));
+  curFilter='all';
+}
+function navClick(btn,page){
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  var sb=document.getElementById('scrollBody');
+  if(page==='menu')sb.scrollTo({top:340,behavior:'smooth'});
+  else if(page==='contact')openWA();
+  else sb.scrollTo({top:0,behavior:'smooth'});
+}
+function openWA(){window.open('https://wa.me/919876500000?text='+encodeURIComponent('Namaste Mr. Taste! Order karna hai.'),'_blank');}
+function callUs(){window.open('tel:+919876500000');}
+function openMaps(){window.open('https://maps.google.com/?q=Lucknow+Railway+Station','_blank');}
+document.querySelectorAll('.add-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    this.textContent='✓';this.style.background='#2e7d32';
+    var self=this;setTimeout(()=>{self.textContent='+';self.style.background='var(--gold)';},900);
+  });
+});
+</script>
+</body>
+</html>
